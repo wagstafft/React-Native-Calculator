@@ -4,12 +4,13 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 interface CalculatorButtonProps {
   text: string;
+  handlePress: any;
 }
 
 const CalculatorButton = (props: CalculatorButtonProps) => {
   return (
     <View style={styles.calculatorButton}>
-      <Button title={props.text} />
+      <Button color="#282c34" title={props.text} onPress={props.handlePress} />
     </View>
   );
 };
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     borderColor: Colors.white,
     borderRadius: 2,
     borderWidth: 1,
-    borderStyle: "solid",
+    borderStyle: 'solid',
   },
 });
 
