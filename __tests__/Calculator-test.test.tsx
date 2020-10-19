@@ -66,3 +66,17 @@ it('adds correctly', () => {
   pressSeriesOfButtonsByText(getAllByText, '+15=');
   expect(getByText('60')).toBeTruthy();
 });
+
+it('subtracts correctly', () => {
+  const {getAllByText, queryByText, getByText} = render(<Calculator />);
+  expect(queryByText('-6')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '0-6=');
+  expect(getByText('-6')).toBeTruthy();
+  pressButtonByText(getAllByText('Clr'));
+  expect(queryByText('45')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '90-45=');
+  expect(getByText('45')).toBeTruthy();
+  expect(queryByText('20')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '-25=');
+  expect(getByText('20')).toBeTruthy();
+});

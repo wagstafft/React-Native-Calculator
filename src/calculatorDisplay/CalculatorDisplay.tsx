@@ -9,11 +9,9 @@ interface CalculatorDisplayProps {
 }
 
 function getDisplayString(props: CalculatorDisplayProps): string {
-  let displayString = `${
-    props.previousDisplayValue ? props.previousDisplayValue : ''
-  }`;
+  let displayString = `${props.lastOperand ? props.previousDisplayValue : ''}`;
   displayString += `${props.lastOperand ? props.lastOperand : ''}`;
-  displayString += `${props.displayValue ? props.displayValue : ''}`;
+  displayString += `${props.displayValue}`;
   return displayString;
 }
 
