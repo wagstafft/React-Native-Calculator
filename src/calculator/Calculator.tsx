@@ -87,6 +87,9 @@ const Calculator = () => {
         case '-':
           changedDisplayValue -= +changedState.displayValue;
           break;
+        case '*':
+          changedDisplayValue *= +changedState.displayValue;
+          break;
         default:
           return;
       }

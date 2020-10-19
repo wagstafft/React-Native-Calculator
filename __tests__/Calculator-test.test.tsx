@@ -80,3 +80,18 @@ it('subtracts correctly', () => {
   pressSeriesOfButtonsByText(getAllByText, '-25=');
   expect(getByText('20')).toBeTruthy();
 });
+
+it('multiplication correctly', () => {
+  const {getAllByText, queryByText, getByText} = render(<Calculator />);
+  expect(queryByText('121')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '11*11=');
+  expect(getByText('121')).toBeTruthy();
+  pressButtonByText(getAllByText('Clr'));
+  expect(queryByText('169')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '13*13=');
+  expect(getByText('169')).toBeTruthy();
+  pressButtonByText(getAllByText('Clr'));
+  expect(queryByText('78')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '6*13=');
+  expect(getByText('78')).toBeTruthy();
+});
