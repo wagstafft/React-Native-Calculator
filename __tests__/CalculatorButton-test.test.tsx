@@ -10,5 +10,12 @@ import renderer from 'react-test-renderer';
 import CalculatorButton from '../src/calculatorButton/CalculatorButton';
 
 it('renders correctly', () => {
-  renderer.create(<CalculatorButton text={'1'} />);
+  renderer.create(
+    <CalculatorButton
+      text={'1'}
+      handlePress={() => {
+        console.log('hello');
+      }}
+    />,
+  );
 });

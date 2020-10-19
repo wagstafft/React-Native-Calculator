@@ -10,5 +10,11 @@ import CalculatorDisplay from '../src/calculatorDisplay/CalculatorDisplay';
 import renderer from 'react-test-renderer';
 
 it('renders correctly', () => {
-  renderer.create(<CalculatorDisplay />);
+  renderer.create(
+    <CalculatorDisplay
+      displayValue="0"
+      lastOperand="+"
+      previousDisplayValue={0}
+    />,
+  );
 });

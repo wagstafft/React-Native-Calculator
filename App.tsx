@@ -11,14 +11,14 @@
 import React from 'react';
 import Calculator from './src/calculator/Calculator';
 
-declare const global: { HermesInternal: null | {} };
+declare const global: {HermesInternal: null | {}};
 
 const App = () => {
   return (
     <>
       {/* <StatusBar barStyle="dark-content" />
       <SafeAreaView> */}
-        <Calculator />
+      <Calculator />
       {/* <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>

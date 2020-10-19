@@ -61,3 +61,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+AndroidArt/ReactCalculatorLogo.psd
+android/gradle.properties
+android/gradle.properties
