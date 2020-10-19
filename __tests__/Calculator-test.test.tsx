@@ -116,14 +116,14 @@ it('divide by zero handled', () => {
   expect(queryByText('Error Divide By Zero')).toBeTruthy();
 });
 
-it ('pressing equal with no operand', () => {
+it('pressing equal with no operand', () => {
   const {getAllByText, queryByText, getByText} = render(<Calculator />);
   expect(queryByText('123')).toBeFalsy();
   pressSeriesOfButtonsByText(getAllByText, '123=');
   expect(getByText('123')).toBeTruthy();
 });
 
-it ('changing operand', () => {
+it('changing operand', () => {
   const {getAllByText, queryByText, getByText} = render(<Calculator />);
   expect(queryByText('246')).toBeFalsy();
   pressSeriesOfButtonsByText(getAllByText, '123+-+123=');

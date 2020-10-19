@@ -107,18 +107,17 @@ const Calculator = () => {
   }
 
   let errorElement = state.errors.map((error, index) => {
-      return (
-    <View key={error + index} style={styles.error}>
-    <Text style={styles.errorText}>
-        {error}
-    </Text>
-    </View>);
+    return (
+      <View key={error + index} style={styles.error}>
+        <Text style={styles.errorText}>{error}</Text>
+      </View>
+    );
   });
 
   return (
     <>
       <View style={styles.calculatorButtons}>
-      {errorElement}
+        {errorElement}
         <View style={styles.calculatorButtonRow}>
           <CalculatorDisplay
             lastOperand={state.lastOperand}
@@ -178,7 +177,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
-    // backgroundColor: Colors.black,
+    backgroundColor: Colors.black,
   },
   error: {
     flexDirection: 'row',
@@ -186,9 +185,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.Green,
   },
   errorText: {
-      color: '#FF0000',
-      fontWeight: 'bold',
-  }
+    color: '#FF0000',
+    fontWeight: 'bold',
+  },
 });
 
 export default Calculator;
