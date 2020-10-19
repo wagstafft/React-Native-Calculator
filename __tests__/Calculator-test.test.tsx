@@ -95,3 +95,37 @@ it('multiplication correctly', () => {
   pressSeriesOfButtonsByText(getAllByText, '6*13=');
   expect(getByText('78')).toBeTruthy();
 });
+
+it('divide correctly', () => {
+  const {getAllByText, queryByText, getByText} = render(<Calculator />);
+  expect(queryByText('0.2')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '1/5=');
+  expect(getByText('0.2')).toBeTruthy();
+  pressButtonByText(getAllByText('Clr'));
+  expect(queryByText('0.05')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '125/2500=');
+  expect(getByText('0.05')).toBeTruthy();
+  pressButtonByText(getAllByText('Clr'));
+  pressSeriesOfButtonsByText(getAllByText, '=');
+});
+
+it('divide by zero handled', () => {
+  const {getAllByText, queryByText} = render(<Calculator />);
+  expect(queryByText('Error Divide By Zero')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '5/0=');
+  expect(queryByText('Error Divide By Zero')).toBeTruthy();
+});
+
+it ('pressing equal with no operand', () => {
+  const {getAllByText, queryByText, getByText} = render(<Calculator />);
+  expect(queryByText('123')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '123=');
+  expect(getByText('123')).toBeTruthy();
+});
+
+it ('changing operand', () => {
+  const {getAllByText, queryByText, getByText} = render(<Calculator />);
+  expect(queryByText('246')).toBeFalsy();
+  pressSeriesOfButtonsByText(getAllByText, '123+-+123=');
+  expect(getByText('246')).toBeTruthy();
+});

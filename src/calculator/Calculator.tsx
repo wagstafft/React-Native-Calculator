@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 
 import CalculatorButton from '../calculatorButton/CalculatorButton';
 import CalculatorDisplay from '../calculatorDisplay/CalculatorDisplay';
@@ -74,25 +74,30 @@ const Calculator = () => {
       displayValue: state.displayValue,
       lastOperand: state.lastOperand,
       previousDisplayValue: state.previousDisplayValue,
-      errors: state.errors,
+      errors: [],
     };
 
     let changedDisplayValue = state.previousDisplayValue;
 
-    if (+changedState.displayValue) {
-      switch (state.lastOperand) {
-        case '+':
-          changedDisplayValue += +changedState.displayValue;
-          break;
-        case '-':
-          changedDisplayValue -= +changedState.displayValue;
-          break;
-        case '*':
-          changedDisplayValue *= +changedState.displayValue;
-          break;
-        default:
+    switch (state.lastOperand) {
+      case '+':
+        changedDisplayValue += +changedState.displayValue;
+        break;
+      case '-':
+        changedDisplayValue -= +changedState.displayValue;
+        break;
+      case '*':
+        changedDisplayValue *= +changedState.displayValue;
+        break;
+      case '/':
+        if (changedState.displayValue === '0') {
+          changedState.errors.push('Error Divide By Zero');
+          setState(changedState);
           return;
-      }
+        } else {
+          changedDisplayValue /= +changedState.displayValue;
+        }
+        break;
     }
 
     changedState.previousDisplayValue = 0;
@@ -101,9 +106,19 @@ const Calculator = () => {
     setState(changedState);
   }
 
+  let errorElement = state.errors.map((error, index) => {
+      return (
+    <View key={error + index} style={styles.error}>
+    <Text style={styles.errorText}>
+        {error}
+    </Text>
+    </View>);
+  });
+
   return (
     <>
       <View style={styles.calculatorButtons}>
+      {errorElement}
         <View style={styles.calculatorButtonRow}>
           <CalculatorDisplay
             lastOperand={state.lastOperand}
@@ -163,8 +178,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: Colors.black,
+    // backgroundColor: Colors.black,
   },
+  error: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: Colors.Green,
+  },
+  errorText: {
+      color: '#FF0000',
+      fontWeight: 'bold',
+  }
 });
 
 export default Calculator;
