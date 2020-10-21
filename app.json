@@ -1,4 +1,6 @@
 {
   "name": "ReactNativeCalculator",
-  "displayName": "ReactNativeCalculator"
+  "displayName": "ReactNativeCalculator",
+  "icon": "./AndroidArt/ReactCalculatorIcon.png",
+  "version": "3.0.0"
 }
